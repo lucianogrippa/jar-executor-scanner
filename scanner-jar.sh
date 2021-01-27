@@ -124,4 +124,3 @@ while [[ true ]]; do
     #echo "chksum2 = $chksum2  chksum1 =$chksum1";
     sleep $timeinterval;
 done
-
