@@ -5,7 +5,7 @@ USER root
 RUN apt-get update && apt-get install vim git -y  
 
 #RUN mkdir -p env && mkdir -p exec && mkdir -p log
-RUN mkdir -p /root/app && chmod 7775 /root/app
+RUN mkdir -p /root/app && chmod 775 /root/app
 
 RUN cd /root/app
 
