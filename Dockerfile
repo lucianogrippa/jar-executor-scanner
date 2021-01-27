@@ -15,6 +15,6 @@ WORKDIR /root/app
 
 RUN sed -i -e 's/\r$//' /root/app/scanner-jar.sh
 
-RUN chmod 7775 /root/app/scanner-jar.sh
+RUN chmod 775 /root/app/scanner-jar.sh
 
 CMD ["/root/app/scanner-jar.sh"]
