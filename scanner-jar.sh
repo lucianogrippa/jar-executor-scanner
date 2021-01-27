@@ -17,7 +17,7 @@ echo "time intervall: $timeinterval"
 
 jarfolder='./exec'
 envfolder='./env'
-logfolder='./log'
+logfolder='./logs'
 
 echo "####################################"
 echo "#  SPRING BOOT STARTER            ##"
