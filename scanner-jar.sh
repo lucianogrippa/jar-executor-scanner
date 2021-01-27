@@ -20,7 +20,7 @@ envfolder='./env'
 logfolder='./logs'
 
 echo "####################################"
-echo "#  SPRING BOOT STARTER            ##"
+echo "#  JAR / WAR STARTER              ##"
 echo "####################################"
 
 echo "Folder to deploy=\"$jarfolder\""
@@ -36,12 +36,12 @@ else
 	exit 0
 fi
 
-printf -v app_env ' %s' "${appEnv[@]}" # yields "|1|2|3|4"
-app_env=${app_env:1}                  # remove the leading '|'
+printf -v app_env ' %s' "${appEnv[@]}" 
+app_env=${app_env:1}
 echo $app_env
 
 echo "#####################################"
-echo "#  WATCH FOLDER SPRING BOOT APP    ##"
+echo "#  WATCH FOLDER JAVA APP    		##"
 echo "#####################################"
 #chksum1="${chksum1:-new instance}"
 filename=""
@@ -55,16 +55,20 @@ while [[ true ]]; do
 		
        	for entry in "$jarfolder"/*
 		do
-		  ext=$(basename "$entry" | cut -d. -f2)
+
+		  fullFileName=$(basename $entry)
+
+		  ext="${fullFileName##*.}"
 		  #echo "estensione: $ext"
-		  fbname=$(basename "$entry" | cut -d. -f1)
+		  fbname=${fullFileName%.*}
+		 
 		  
 		  runfile="$jarfolder/$fbname.run"
 		  stopfile="$jarfolder/$fbname.stop"
-
+		  stoppedfile="$jarfolder/$fbname.stop.stopped"
 		  
 
-		  if [[ (${entry: -4} == ".war" || ${entry: -4} == ".jar") && (! -f $runfile) ]]; then
+		  if [[ (${entry: -4} == ".war" || ${entry: -4} == ".jar") && (! -f $runfile) && (! -f $stoppedfile) ]]; then
 			  commandToExec="java -jar $app_env"
 
 			  
@@ -106,9 +110,9 @@ while [[ true ]]; do
 		 # [nomejar].stop
 		 ##########################################################
 		 if [ -f $stopfile ]; then
-			echo "stopping file $fbname ........."
+			echo "stopping file $fullFileName ........."
 			## esegui stop del war
-			kill -9 $(pgrep -f $fbname)
+			kill -9 $(pgrep -f $fullFileName)
 
 			mv  $stopfile  $stopfile.stopped
 			echo "stopping file $fbname ......... stopped"
