@@ -8,7 +8,7 @@ spring:
   # USERS DATASOURCE DEFINITION
   #############################################################
   datasource:
-    url: ${dbconnection:jdbc:mysql://localhost:3306/mywebwalletdb?autoReconnect=true&useUnicode=true&createDatabaseIfNotExist=true&characterEncoding=utf-8}
+    url: ${dbconnection:jdbc:mysql://172.22.10.4:3006/mywebwalletdb?autoReconnect=true&useUnicode=true&createDatabaseIfNotExist=true&characterEncoding=utf-8}
     driverClassName: ${dbdriver:com.mysql.cj.jdbc.Driver}
     username: wallet
     password: "@jkhnYY6530923jjh@"
