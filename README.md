@@ -77,7 +77,7 @@ For this application we have the two files:
 
 We can navigate to application at http://localhost:1250/mywebwallet
 
-Now we need to create application parameters for apply to java command:
+Now we need to create the parameters needed for the application to pass to the java command:
 
 ```bash
 $ cd env
