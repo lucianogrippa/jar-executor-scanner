@@ -15,9 +15,21 @@ cleanup
 timeinterval=5;
 echo "time intervall: $timeinterval"
 
-jarfolder='./exec'
-envfolder='./env'
-logfolder='./logs'
+jarfolder=$1
+envfolder=$2
+logfolder=$3
+
+if [ -z "$jarfolder" ]; then
+    jarfolder="./exec"
+fi;
+
+if [ -z "$envfolder" ]; then
+    envfolder="./env"
+fi;
+
+if [ -z "$logfolder" ]; then
+    logfolder="./logs"
+fi;
 
 echo "####################################"
 echo "#  JAR / WAR STARTER              ##"
@@ -124,3 +136,5 @@ while [[ true ]]; do
     #echo "chksum2 = $chksum2  chksum1 =$chksum1";
     sleep $timeinterval;
 done
+
+exit 0

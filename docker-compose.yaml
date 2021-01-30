@@ -36,7 +36,6 @@ services:
     networks:
       jarscannerappnetwork:
         ipv4_address: 172.22.10.4
-
     image: dev-appmyserverdb
     container_name: dev-appmyserverdb
     environment:
