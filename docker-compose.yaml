@@ -1,0 +1,51 @@
+version: "3.3"
+
+networks:
+  jarscannerappnetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.10.0/24
+
+services:
+  jarscannerapp:
+    build:
+      context: .
+    image: jarscannerapp
+    container_name: jarscannerapp
+    networks:
+      jarscannerappnetwork:
+        ipv4_address: 172.22.10.3
+    volumes:
+      - ./configurations:/root/app/configurations
+      - ./env:/root/app/env
+      - ./exec:/root/app/exec
+      - ./logs:/root/app/logs
+      - ./nginx/app.conf:/etc/nginx/conf.d/app.conf
+    ports:
+      - 80:80
+      - 443:443
+      - 1250:1250
+    depends_on:
+      - appmyserverdb
+
+  appmyserverdb:
+    build:
+      context: ./mysql
+    networks:
+      jarscannerappnetwork:
+        ipv4_address: 172.22.10.4
+    image: dev-appmyserverdb
+    container_name: dev-appmyserverdb
+    environment:
+      TZ: Europe/Rome
+      MYSQL_IP: ::1
+      MYSQL_PORT: 3006
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_DATABASE: mywebwalletdb
+      MYSQL_USER: wallet
+      MYSQL_PASSWORD: "@jkhnYY6530923jjh@"
+      MYSQL_ROOT_PASSWORD: JHG7YYngh33345bbI425KL
+    ports:
+      - 3006:3006

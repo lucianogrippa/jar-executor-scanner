@@ -1,0 +1,55 @@
+server:
+  port: 1250
+
+spring:
+  jackson:
+    default-property-inclusion: NON_NULL
+  ##############################################################
+  # USERS DATASOURCE DEFINITION
+  #############################################################
+  datasource:
+    url: ${dbconnection:jdbc:mysql://172.22.10.4:3006/mywebwalletdb?autoReconnect=true&useUnicode=true&createDatabaseIfNotExist=true&characterEncoding=utf-8}
+    driverClassName: ${dbdriver:com.mysql.cj.jdbc.Driver}
+    username: wallet
+    password: "@jkhnYY6530923jjh@"
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+  ##############################################################
+  # JPA CONFIGURATION
+  #############################################################
+  jpa:
+    # database-platform: ${jpaplatform:org.hibernate.dialect.H2Dialect}
+    database-platform: ${jpaplatform:org.hibernate.dialect.MySQL57Dialect}
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    open-in-view: true
+##############################################################
+# LOGGING
+###############################################################
+logging:
+  level:
+    root: INFO
+
+#############################################################
+# GESTIONE JWT TOKEN
+##############################################################
+myapp:
+  auth:
+    token:
+      uri: /signin
+      refresh: /refresh
+      header: X-TOKEN-AUTHORIZATION
+      prefix: Bearer
+      expiration: 7200
+      secret: 93ADCB1D420D412AB95115F83A4E46FD6A88DA50EF96621A1908B399AC3DE172695DDCCF65046DDB8BF32BD16951C36B02AA342C2568D0FAE324D1835A2B93F5
+    appkey:
+      key: CC98CEB3482FCE0SC5E143EBB5D26B55D406F1B1E9D9416425E3O4DB12F3C43E1
+      header: X-APPKEY-AUTHORIZATION
+##############################################################
+# PROPERTIES SPECIFICHE DELL' APPLICAZIONE
+#############################################################
+
