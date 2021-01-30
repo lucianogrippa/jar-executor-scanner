@@ -19,19 +19,19 @@ RUN mkdir -p /root/app && chmod 775 /root/app
 RUN cd /root/app
 
 ADD ./scanner-jar.sh /root/app
-ADD ./jar-run.sh /root/app
+ADD ./jar-restart.sh /root/app
 ADD ./jar-stop.sh /root/app
 ADD ./docker-entrypoint.sh /root/app
 
 WORKDIR /root/app
 
 RUN sed -i -e 's/\r$//' /root/app/scanner-jar.sh
-RUN sed -i -e 's/\r$//' /root/app/jar-run.sh
+RUN sed -i -e 's/\r$//' /root/app/jar-restart.sh
 RUN sed -i -e 's/\r$//' /root/app/jar-stop.sh
 RUN sed -i -e 's/\r$//' /root/app/docker-entrypoint.sh
 
 RUN chmod 775 /root/app/scanner-jar.sh
-RUN chmod 775 /root/app/jar-run.sh
+RUN chmod 775 /root/app/jar-restart.sh
 RUN chmod 775 /root/app/jar-stop.sh
 RUN chmod 775 /root/app/docker-entrypoint.sh
 
