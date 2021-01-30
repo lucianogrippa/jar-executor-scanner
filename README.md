@@ -11,10 +11,10 @@
 
 This simple application scans the "exec" directory to execute *.jar or *.war files.<br>
 
-The application remains on watch inside "exec" directory and when new file with war o jar extension is added to it, automatically will run java command with parameters took from files inside "env" directory.
-In "logs" directory it writes output log result of the execution process.
+The application remains on watch inside "exec" directory and when new file with war o jar extension is added to it, automatically will run java command with parameters took from files inside "env" directory.<br>
+Inside "logs" directory will writes output logs result of the execution process.<br>
 
-Personally, I have created this application for managing spring boot application's instances, I prefer using it with docker container whom is configured with ngnix and mysql database.
+I have created this application for managing spring boot application's instances, I prefer using it with docker container whom is configured with ngnix and mysql database.
 
 ## Install project
 
@@ -29,10 +29,10 @@ move inside project directory
 $ cd jar-executor-scanner
 ```
 
-The project is made with bash script so you need to install the terminal or use linux like distribution as Ubuntu or Debian or in alternative you can use the docker container provided inside the project.
+The project is made with bash script so you need to install the terminal or use a "Linux like" distribution as Ubuntu or Debian or in alternative you can use the docker container provided in the project.
 
 Another dependency is java and you need install it and put into the system path.
-It is obvious that if you use the container, you not need to install either bash or java terminal just run 
+It is obvious that if you use the container, you not need to install either bash terminal or java.  Just run
 
 ```bash
 $ docker-compose up # -d if run with detached mode
@@ -42,7 +42,7 @@ Otherwise for starting watching directory just run
 ```bash
 $ ./scanner-jar.sh 
 ```
-The only ways to stop watching directory is kill the process or by CTRL+C key combination.
+The only ways to stop watching directory is to kill the process or by CTRL+C key combination.
 
 if you have in execution a spring boot application and want to restart it you just run
 
@@ -62,7 +62,7 @@ $ ./jar-stop [applicanionname]
   The file "app.env" contains the parameters to apply for all jars. 
   Also you can use "[application name].env" file to include parameters specifically for the application only.
 - **/exec**: Put here java executable file (war or jar).
-- **/mysql**: This directory contains configuration for the mysql service provided  by docker container. You can put inside dump.sql your database structure, will be used as a model when builds the container.
+- **/mysql**: This directory contains configuration for the mysql service provided  by docker container. You can put inside dump.sql file your database structure, it will be used as a model when we builds the container.
 - **/ngnix**: This directory contains only "app.conf", represents the configuration file for ngnix server.
 
 ## Example
@@ -106,7 +106,7 @@ $ kill -9 $(pgrep -f scanner-jar.sh)
 ```
 #### Example with docker
 
-The starting base is the above example so we keep the files we created.
+The starting base is the above example, so we keep the files.
 Before starting docker container we need to know how it is configured.
 We have two services and one network:
 
@@ -135,7 +135,7 @@ upstream mywebwallet {
     server 127.0.0.3:1250;
 }
 ```
-now web put proxy pass 
+now setup  proxy pass 
 
 ```ini
 location /mywebwallet {
@@ -143,7 +143,7 @@ location /mywebwallet {
 }
 ```
 
-now just run 
+finally just run 
 
 ```bash
 $ docker-compose up
